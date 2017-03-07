@@ -68,14 +68,69 @@ class AppComponent extends React.Component {
       vPosRangeX=vPosRange.x,
 
         imgsArrageTopArr=[];
-        topImgNum=Math.ceil(Math.random()*2),
-      //取一个或者不取
+        topImgNum=Math.ceil(Math.random()*2), //取一个或者不取
         topImgSpliceIndex=0,
-        imgsArrangeCenterArr=imgsArrangeArr.splice(centerIndex,1)
+        imgsArrangeCenterArr=imgsArrangeArr.splice(centerIndex,1);
+        //首先居中centerIndex图片，centerIndex图片不需要旋转
+        imgsArrangeCenterArr[0]={
+            pos:centerPos,
+            rotate:0,
+            isCenter:true
+        }
 
+      //取出要布局上侧的图片的状态信息
+        topImgSpliceIndex=Math.floor(Math.random()*(imgsArrangeArr.length-topImgNum));
+        imgsArrageTopArr=imgsArrangeArr.splice(topImgSpliceIndex,topImgNum);
+        //布局位于上侧的图片
+    imgsArrageTopArr.forEach((value,index)=>{
+      imgsArrageTopArr[index]={
+        pos:{
+          top:getRangeRandom(vPosRangeTopY[0],vPosRangeTopY[1]),
+          left:getRangeRandom(vPosRangeX[0],vPosRangeX[1])
+        },
+        rotate:get30DegRandom(),
+        isCenter:false
+      }
+    });
+    //布局左两侧的图片
+    for (let i = 0, j = imgsArrangeArr.length, k = j / 2; i < j; i++) {
+      let hPosRangeLORX = null;
 
-
+      //前半部分布局左边,右边部分布局右边
+      if (i < k) {
+        hPosRangeLORX = hPosRangeLeftSecX;
+      } else {
+        hPosRangeLORX = hPosRangeRightSecX
+      }
+      imgsArrangeArr[i] = {
+        pos: {
+          top: getRangeRandom(hPosRangeY[0], hPosRangeY[1]),
+          left: getRangeRandom(hPosRangeLORX[0], hPosRangeLORX[1])
+        },
+        rotate: get30DegRandom(),
+        isCenter: false
+      };
+    }
+    if (imgsArrangTopArr && imgsArrangTopArr[0]) {
+      imgsArrangeArr.splice(topImgSpiceIndex, 0, imgsArrangTopArr[0]);
+    }
+    imgsArrangeArr.splice(centerIndex, 0, imgsArrangeCenterArr[0]);
+    this.setState({
+      imgsArrangeArr: imgsArrangeArr
+    });
   }
+
+  /*利用rearramhe函数
+   *居中对应index的图片
+   *
+   */
+  center(index) {
+    return () => {
+      this.rearrange(index);
+    }
+  }
+
+
   //重新布局所有图片
  componentDidMount(){
     let stageDOM=ReactDOM.findDOMNode(this.refs.stage),
@@ -114,7 +169,7 @@ class AppComponent extends React.Component {
 
  }
   render() {
-    var controllerUnts=[],
+    let controllerUnts=[],
     imgFigures=[];
     imageDatas.forEach((value,index) =>{
       if(!this.state.imgsArrangeArr[index]){
