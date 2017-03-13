@@ -50,9 +50,7 @@ Tips
     先安装cnpm   
     `npm install -g cnpm --registry=https://registry.npm.taobao.org`
     然后安装node-sass
-    `cnpm install node-sass`
-     
-
+    `cnpm install node-sass`    
 * 安装sass-loader 
 
     `npm install sass-loader --save-dev`
@@ -64,3 +62,18 @@ Tips
     `git commit -m "init project structure"`(提交代码)
 
     `git push`(提交)
+    ###宽度获取的几种方式的比较
+scrollWidth：对象的实际内容的宽度，不包边线宽度，会随对象中内容超过可视区后而变大。 
+
+clientWidth：对象内容的可视区的宽度，不包滚动条等边线，会随对象显示大小的变化而改变。 
+
+offsetWidth：对象整体的实际宽度，包滚动条等边线，会随对象显示大小的变化而改变。
+###渲染的两种模式
+* 灰阶渲染：通过控制字体轮廓上像素点的亮度达到字体原始形状
+* 亚像素：分辨率在垂直方向扩大三倍，效果更好，MACox
+
+    ` -webkit-font-smoothing :antialiased` //灰阶平滑
+    `moz-osx-font-smoothing:grayscale`
+###调试代码
+在代码中间加入debugger，代码执行到这里停止；
+在生产环境中使用debugger，需要在eslintrc中rules添加'no-debugger':false
