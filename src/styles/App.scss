@@ -1,12 +1,14 @@
   /*根据自己的图片大小计算*/
 
-@font-face {
-  font-family: "iconfont";
-  src: url("../fonts/icons/iconfont.eot") format("embedded-opentype"), url("../fonts/icons/iconfont.woff") format("woff"), url("../fonts/icons/iconfont.ttf") format("truetype"), url("../fonts/icons/iconfont.svg") format("svg");
-}
-
-
-/* Base Application Styles */
+  @font-face {
+    font-family: 'iconfont';  /* project id 249363 */
+    src: url('//at.alicdn.com/t/font_cdlvcotjcibpgb9.eot');
+    src: url('//at.alicdn.com/t/font_cdlvcotjcibpgb9.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_cdlvcotjcibpgb9.woff') format('woff'),
+    url('//at.alicdn.com/t/font_cdlvcotjcibpgb9.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_cdlvcotjcibpgb9.svg#iconfont') format('svg');
+  }
+  /* Base Application Styles */
 
 html,
 body {
@@ -132,14 +134,15 @@ body {
     transition: transform .6s ease-in-out, background-color .3s;
 
     &::after{
-      color: #fff;
-      font-family: "fonts-turn-arrow";
-      font-size: 80%;
-      line-height:30px;
-      content: "\e600";
-
+      font-family:"iconfont" !important;
+      font-size:16px;
+      font-style:normal;
       -webkit-font-smoothing: antialiased;
-      -moz-font-smoothing: grayscale;
+      -moz-osx-font-smoothing: grayscale;
+      content: "\e633";
+      text-align: center;
+      color:#fff;
+      line-height: 30px;
     }
 
     &.is-inverse {
