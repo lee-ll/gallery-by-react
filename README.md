@@ -69,8 +69,9 @@ Tips
 ###渲染的两种模式
 * 灰阶渲染：通过控制字体轮廓上像素点的亮度达到字体原始形状.
 * 亚像素：分辨率在垂直方向扩大三倍，效果更好，MACox.
-       ` -webkit-font-smoothing :antialiased`   //灰阶平滑
-       `moz-osx-font-smoothing:grayscale`
+
+` -webkit-font-smoothing :antialiased` 
+`moz-osx-font-smoothing:grayscale`
 ###调试代码
-在代码中间加入debugger，代码执行到这里停止；
-在生产环境中使用debugger，需要在eslintrc中rules添加'no-debugger':false
+* 在代码中间加入debugger，代码执行到这里停止；
+* 在生产环境中使用debugger，需要在eslintrc中rules添加'no-debugger':false
